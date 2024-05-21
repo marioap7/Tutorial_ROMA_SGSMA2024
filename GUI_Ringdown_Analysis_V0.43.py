@@ -18,20 +18,17 @@ import xlrd
 import math
 import time
 import openpyxl
-import matplotlib
 
 import numpy 				as np
 import tkinter 				as tk
 import matplotlib.pyplot 	as plt
-import tkinter.scrolledtext as st
 
 from datetime 							import datetime
 from scipy.linalg 						import hankel
 from openpyxl.styles 					import Alignment, Font
-from tkinter 							import filedialog, messagebox, ttk
-from scipy.fftpack 						import fft, fftfreq, fftshift
+from tkinter 							import filedialog, ttk
+from scipy.fftpack 						import fft, fftshift
 from matplotlib.backends.backend_tkagg 	import FigureCanvasTkAgg, NavigationToolbar2Tk
-
 
 
 
@@ -266,7 +263,7 @@ August 11th, 2021
 		self.ent4.delete(0, 'end')
 
 		file_path = filedialog.askopenfilename(title		='Select a file',
-		                          	   		   filetype		=[('csv files', '*.csv'),('xlsx files', '*.xlsx')])
+		                          	   		   filetypes		=[('csv files', '*.csv'),('xlsx files', '*.xlsx')])
 		self.ent1.insert(0, file_path)
 
 		if self.Check_Data() == True:
@@ -728,7 +725,7 @@ August 11th, 2021
 		self.unit_circle = plt.Circle((0, 0), 1.0, linestyle='dashed', color='w', fill=False)
 		ax.add_patch(self.unit_circle)
 
-		colors 	= plt.cm.get_cmap('gist_rainbow', can+1)
+		colors 	= plt.get_cmap('gist_rainbow', can+1)
 		for r in r_aprx:
 
 			if abs(complex(r[0].real, r[0].imag)) > 1.0:
@@ -810,7 +807,7 @@ August 11th, 2021
 
 		plt.style.use('dark_background')
 		self.fig = plt.Figure(dpi = 100) 
-		colors = plt.cm.get_cmap('hsv', can+1)
+		colors = plt.get_cmap('hsv', can+1)
 
 		im = 1
 		for index, ifreq in enumerate(freq):
@@ -1123,7 +1120,7 @@ August 11th, 2021
 		self.toolbar_fft.place(relx = 0.50, rely = 1.00, relwidth = 1.00, anchor = tk.S)
 		self.toolbar_fft.update()
 
-		colors = plt.cm.get_cmap('gist_rainbow', can+1)
+		colors = plt.get_cmap('gist_rainbow', can+1)
 		for i in range(can):
 			ax.plot(fx, abs(Es[: , i]) / (2**14), color = colors(i), label = list_signals[i], lw = '2')
 		
@@ -1244,7 +1241,7 @@ August 11th, 2021
 		self.toolbar_sig.place(relx = 0.50, rely = 1.00, relwidth = 1.00, anchor = tk.S)
 		self.toolbar_sig.update()
 
-		colors 	= plt.cm.get_cmap('gist_rainbow', can+1)
+		colors 	= plt.get_cmap('gist_rainbow', can+1)
 		s0 		= np.linalg.norm(list(y_vec[: , i_signal]))
 		s1 		= np.linalg.norm(list(y_aprx))
 		sfull2 	= pow(s0 , 2)
@@ -1809,7 +1806,7 @@ class Window2():
 		self.toolbar.place(height = 32, relx = 0.995, rely = 0.99, relwidth = .88, anchor = tk.SE)
 		self.toolbar.update()
 
-		colors = plt.cm.get_cmap('gist_rainbow', len(h_vec)+1)
+		colors = plt.get_cmap('gist_rainbow', len(h_vec)+1)
 		ax.axvline(float(self.ent1.get()), color = 'w', linestyle = 'dashed')
 		ax.axvline(float(self.ent2.get()), color = 'w',  linestyle = 'dashed')
 		ax.grid(True, color = 'grey',  linestyle = ':', linewidth = 0.75)
@@ -2045,7 +2042,7 @@ class Window3():
 		if enrg_th == 0 	: modes = 0
 		if enrg_th == 100.	: modes = r
 
-		colors = plt.cm.get_cmap('gist_rainbow', can+1)
+		colors = plt.get_cmap('gist_rainbow', can+1)
 
 		plt.style.use('dark_background')
 		self.fig 	= plt.Figure(dpi = 100)

@@ -12,7 +12,7 @@ May 2024
 ************************************************************************
 '''
 
-import sys, os
+import os
 import csv
 import xlrd
 import math
